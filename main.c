@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "buku.h"
 
-// 🔥 Variabel global DITARUH DI SINI
 struct Buku daftar[100];
 int jumlahBuku = 0;
 
@@ -20,7 +19,7 @@ int main() {
             case 1: tambahBuku(); break;
             case 2: tampilkanBuku(); break;
             case 0: return 0;
-            default: printf("Menu tidak valid!\n");
+            default: printf("Menu tidak valid\n");
         }
     }
 }

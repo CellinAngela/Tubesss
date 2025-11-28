@@ -2,16 +2,30 @@
 #include "buku.h"
 
 void tampilkanBuku() {
-    printf("\n=== DAFTAR BUKU ===\n");
+    FILE *file;  // Pointer file
+
+    file = fopen("Perpustakaan.txt", "w"); // mode write (w) → data lama akan ditimpa
+
+    if (file == NULL) {
+        printf("❌ Gagal membuat file.\n");
+        return;
+    }
+
+    fprintf(file, "=== DATA BUKU PERPUSTAKAAN ===\n");
+
     if (jumlahBuku == 0) {
-        printf("Belum ada data buku.\n");
+        fprintf(file, "Belum ada data buku.\n");
+        fclose(file);
         return;
     }
 
     for (int i = 0; i < jumlahBuku; i++) {
-        printf("\nBuku ke-%d\n", i + 1);
-        printf("Judul   : %s\n", daftar[i].judul);
-        printf("Penulis : %s\n", daftar[i].penulis);
-        printf("Tahun   : %d\n", daftar[i].tahun);
+        fprintf(file, "\nBuku ke-%d\n", i + 1);
+        fprintf(file, "Judul   : %s\n", daftar[i].judul);
+        fprintf(file, "Penulis : %s\n", daftar[i].penulis);
+        fprintf(file, "Tahun   : %d\n", daftar[i].tahun);
     }
+
+    fclose(file); // tutup file setelah selesai
+    printf("✔ Data berhasil disimpan di 'Perpustakaan.txt'\n");
 }
