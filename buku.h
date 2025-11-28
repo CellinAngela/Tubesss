@@ -1,17 +1,13 @@
-// buku.h
 #ifndef BUKU_H
 #define BUKU_H
 
 struct Buku {
-    char judul[50];
-    char penulis[50];
+    char judul[100];
+    char penulis[100];
     int tahun;
 };
 
-extern struct Buku daftar[100]; // variabel global
-extern int jumlahBuku;          // variabel global
-
-void tambahBuku();
-void tampilkanBuku();
+extern struct Buku daftar[100];
+extern int jumlahBuku;
 
 #endif
