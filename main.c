@@ -1,16 +1,15 @@
+// main.c
 #include <stdio.h>
-#include <stdlib.h>
 #include <windows.h>
 #include "buku.h"
-#include "tambahBuku.h"
-#include "tampilkanBuku.h"
-#include "keluar.h"
+#include "fitur/tambahBuku.h"
+#include "fitur/tampilkanBuku.h"
 
 struct Buku daftar[100];
 int jumlahBuku = 0;
 
-void tampilanPerpus()
-{
+void tampilanFitur(){
+   system("cls");
    printf("======================================");
    printf("\n|   SELAMAT DATANG DI PERPUSTAKAAN   |\n");
    printf("======================================\n");
@@ -20,38 +19,32 @@ void tampilanPerpus()
    printf("======================================\n");
 }
 
-int main()
-{
-   int fiturPerpus, loopFitur;
-   system("cls");
-      tampilanPerpus();
-      printf("Pilih fitur yang kamu mau");
-   
-   do{
-      loopFitur = 0;
-      printf("\n[1-2-0]: ");
-      if (scanf("%d", &fiturPerpus) != 1){
-         printf("Fitur yang dipilih tidak valid\n");
-         fflush(stdin);
-      }
+int main(){
+   int pilihan;
 
-      switch (fiturPerpus){
+   while (1){
+      tampilanFitur();
+      printf("Pilih fitur: ");
+      scanf("%d", &pilihan);
+      getchar();
+
+      switch (pilihan){
       case 1:
          tambahBuku();
          break;
-
       case 2:
          tampilkanBuku();
          break;
-
       case 0:
-         keluar();
-         break;
-
+         system("cls");
+         printf("==============================================\n");
+         printf("|  Terimakasih Telah Datang ke Perpustakaan  |\n");
+         printf("|              Datang Lagi Yaaa              |\n");
+         printf("==============================================\n");
+         return 0;
       default:
          printf("Fitur yang kamu pilih tidak valid\n");
-         loopFitur = 1;
+         getchar();
       }
-   } while (loopFitur == 1);
-   return 0;
+   }
 }
