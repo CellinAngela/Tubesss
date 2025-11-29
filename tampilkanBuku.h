@@ -6,7 +6,7 @@ void tampilkanBuku() {
     system("cls");
     if (jumlahBuku == 0) {
         printf("\n Belum ada data buku yang dimasukkan \n");
-        return 0;
+        return ;
     }
 
     FILE *file = fopen("Perpustakaan.txt", "a");

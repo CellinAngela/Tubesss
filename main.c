@@ -4,6 +4,7 @@
 #include "buku.h"
 #include "tambahBuku.h"
 #include "tampilkanBuku.h"
+#include "hitungBuku.h"
 #include "keluar.h"
 
 struct Buku daftar[100];
