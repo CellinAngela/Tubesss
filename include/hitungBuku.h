@@ -1,9 +1,9 @@
-typedef struct {
-    char title[100];
-    int qty;
-    int price;
-} Book;
+#ifndef HITUNGBUKU_H
+#define HITUNGBUKU_H
 
-void menuFitur5(Book data[], int n);
-int hitungTotalBuku(Book data[], int n);
-int hitungTotalNilai(Book data[], int n);
+#include "buku.h"
+
+void hitungBuku();
+int hitungTotalBuku(struct Buku data[], int n);
+
+#endif

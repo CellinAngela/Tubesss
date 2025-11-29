@@ -9,7 +9,8 @@
 void tampilkanBuku(){
     system("cls");
 
-    if (jumlahBuku == 0){
+    FILE *file = fopen("Perpustakaan.txt", "r");
+    if (file == NULL){
         printf("\n==============================================");
         printf("\n            Data Buku Masih Kosong\n");
         printf("             Silakan tambah buku dulu   \n");
@@ -19,7 +20,17 @@ void tampilkanBuku(){
         return;
     }
 
-    printf("\nData buku dapat dilihat di 'Perpustakaan.txt'");
+    printf("\n==============================================\n");
+    printf("|           DAFTAR BUKU PERPUSTAKAAN       |\n");
+    printf("==============================================\n");
+
+    char line[256];
+    while (fgets(line, sizeof(line), file) != NULL){
+        printf("%s", line);
+    }
+
+    fclose(file);
+    printf("\n==============================================\n");
     printf("\nTekan ENTER untuk kembali");
     getchar();
 }

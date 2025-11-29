@@ -6,3 +6,15 @@ Judul Buku     : Bumi Manusia
 Nama Penulis   : Pramoedya Ananta Toer
 Tahun Terbit   : 1980
 
+Judul Buku     : The Book Thief
+Nama Penulis   : Markus Zusak
+Tahun Terbit   : 2005
+
+Judul Buku     : The Idiot
+Nama Penulis   : Fyodor Dostoevsky 
+Tahun Terbit   : 1869
+
+Judul Buku     : Babel
+Nama Penulis   : R.F Kuang
+Tahun Terbit   : 2022
+

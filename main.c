@@ -16,6 +16,7 @@ void tampilanFitur(){
    printf("======================================\n");
    printf("| 1.Tambah Buku                      |\n");
    printf("| 2.Tampilkan Buku                   |\n");
+   printf("| 3.Hitung Buku                      |\n");
    printf("| 0.Keluar                           |\n");
    printf("======================================\n");
 }
@@ -35,6 +36,9 @@ int main(){
          break;
       case 2:
          tampilkanBuku();
+         break;
+      case 3:
+         hitungBuku();
          break;
       case 0:
          system("cls");
