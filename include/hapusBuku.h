@@ -20,13 +20,13 @@ void hapusBuku() {
     FILE *temp = fopen("temp.txt", "w");
 
     if (!file) {
-        printf("\nData buku masih kosong...\n");
-        printf("Tekan ENTER untuk kembali");
-        getchar();
-        return;
+    printf("\nData buku masih kosong\n");
+    printf("Tekan ENTER untuk kembali");
+    getchar();
+    return;
     }
 
-    char line[256];
+    char line[100];
     while (fgets(line, sizeof(line), file)) {
         if (strncmp(line, "Judul Buku", 10) == 0 && strstr(line, judulHapus)) {  
             ditemukan = 1;
@@ -35,7 +35,7 @@ void hapusBuku() {
             continue;
         }
         fputs(line, temp);
-    }  // ←❗KURUNG INI HARUS ADA!
+    }  
 
     fclose(file);
     fclose(temp);
@@ -48,7 +48,7 @@ void hapusBuku() {
     printf("\n|            BUKU BERHASIL DIHAPUS           |");
     printf("\n==============================================\n");
     } else {
-    printf("\nJudul buku TIDAK ditemukan!\n");
+    printf("\n============= BUKU TIDAK DITEMUKAN =============\n");
     }
 
 
