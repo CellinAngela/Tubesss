@@ -32,3 +32,7 @@ Nama Penulis   : Hamka
 Tahun Terbit   : 1941
 
 
+Judul Buku     : 1
+Nama Penulis   : 1
+Tahun Terbit   : 1
+

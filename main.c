@@ -5,6 +5,8 @@
 #include "include/tambahBuku.h"
 #include "include/tampilkanBuku.h"
 #include "include/hapusBuku.h"
+#include "include/pinjamBuku.h"
+#include "include/kembalikanBuku.h"
 
 
 struct Buku daftar[100];      
@@ -19,6 +21,8 @@ void tampilanFitur(){
    printf("| 2.Tampilkan Buku                   |\n");
    printf("| 3.Hitung Buku                      |\n");
    printf("| 4.Hapus Buku                       |\n");
+   printf("| 5.Peminjaman Buku                  |\n");
+   printf("| 6.Pengembalian Buku                |\n");
    printf("| 0.Keluar                           |\n");
    printf("======================================\n");
 }
@@ -35,6 +39,12 @@ int main(){
       switch (pilihan){
       case 1:
          tambahBuku();
+         break;
+      case 5:
+         pinjamBuku();
+         break;
+      case 6:
+         kembalikanBuku();
          break;
       case 2:
          tampilkanBuku();
