@@ -7,7 +7,8 @@
 #include "include/hapusBuku.h"
 #include "include/pinjamBuku.h"
 #include "include/kembalikanBuku.h"
-
+#include "include/cariBuku.h"
+#include "include/editBuku.h"
 
 struct Buku daftar[100];      
 int jumlahBuku = 0;
@@ -25,6 +26,28 @@ void tampilanFitur(){
    printf("| 6.Pengembalian Buku                |\n");
    printf("| 0.Keluar                           |\n");
    printf("======================================\n");
+}
+
+int main(){
+    int pilihan;
+
+    while (1){
+        tampilanFitur();
+        printf("Pilih fitur: ");
+        scanf("%d", &pilihan);
+        getchar();
+
+        switch (pilihan){
+           
+            case 7:
+                cariBuku(); 
+                break;
+            case 8:
+                editBuku();
+                break;
+            
+        }
+    }
 }
 
 int main(){
