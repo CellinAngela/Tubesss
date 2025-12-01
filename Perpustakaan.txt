@@ -1,6 +1,6 @@
-Judul   : Animal Farm
-Penulis : George Orwell
-Tahun   : 1945
+Judul Buku     : Animal Farm
+Nama Penulis   : George Orwell
+Tahun Terbit   : 1945
 
 Judul Buku     : Bumi Manusia
 Nama Penulis   : Pramoedya Ananta Toer
@@ -17,4 +17,18 @@ Tahun Terbit   : 1869
 Judul Buku     : Babel
 Nama Penulis   : R.F Kuang
 Tahun Terbit   : 2022
+
+Judul Buku     : Funiculi Funicula
+Nama Penulis   : Toshikazu Kawaguchi
+Tahun Terbit   : 2015
+
+
+Judul Buku     : A Little Life
+Nama Penulis   : Hanya Yanagihara
+Tahun Terbit   : 2015
+
+Judul Buku     : Merantau ke Deli
+Nama Penulis   : Hamka
+Tahun Terbit   : 1941
+
 

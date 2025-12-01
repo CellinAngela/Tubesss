@@ -21,7 +21,7 @@ void tampilkanBuku(){
     }
 
     printf("\n==============================================\n");
-    printf("|           DAFTAR BUKU PERPUSTAKAAN       |\n");
+    printf("|           DAFTAR BUKU PERPUSTAKAAN         |\n");
     printf("==============================================\n");
 
     char line[256];

@@ -10,7 +10,7 @@ void tambahBuku(){
     system("cls");
 
     int jumlahInput;
-    printf("\n================ TAMBAH BUKU =================\n");
+    printf("\n================= TAMBAH BUKU =================\n");
     printf("Berapa buku yang ingin ditambahkan?: ");
     scanf("%d", &jumlahInput);
     getchar();
@@ -24,7 +24,7 @@ void tambahBuku(){
 
     for (int i = 0; i < jumlahInput; i++){
         system("cls");
-        printf("------------------ Buku ke-%d -----------------\n", i + 1);
+        printf("================= Buku ke-%d =================\n\n", i + 1);
 
         printf("Judul Buku     : ");
         fgets(daftar[jumlahBuku].judul, 100, stdin);
@@ -48,8 +48,8 @@ void tambahBuku(){
     fclose(file);
 
     printf("\n==============================================");
-    printf("\n            Buku berhasil ditambahkan");
-    printf("\n==============================================");
+    printf("\n|            BUKU BERHASIL DITAMBAH          |");
+    printf("\n==============================================\n");
 
     printf("\nTekan ENTER untuk kembali");
     getchar();

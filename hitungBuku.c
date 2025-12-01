@@ -1,4 +1,4 @@
-#include "hitungBuku.h"
+#include "include/hitungBuku.h"
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
@@ -28,7 +28,7 @@ int hitungJudulBukuDariFile() {
 void hitungBuku(){
     system("cls");
     printf("\n==============================================\n");
-    printf("|          HITUNG JUMLAH BUKU              |\n");
+    printf("|             HITUNG JUMLAH BUKU             |\n");
     printf("==============================================\n");
 
     int totalJudul = hitungJudulBukuDariFile();

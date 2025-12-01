@@ -1,10 +1,11 @@
 // main.c
 #include <stdio.h>
 #include <windows.h>
-#include "buku.h"
-#include "tambahBuku.h"
-#include "tampilkanBuku.h"
-#include "hitungBuku.h"
+#include "include/buku.h"
+#include "include/tambahBuku.h"
+#include "include/tampilkanBuku.h"
+#include "include/hapusBuku.h"
+
 
 struct Buku daftar[100];      
 int jumlahBuku = 0;
@@ -17,6 +18,7 @@ void tampilanFitur(){
    printf("| 1.Tambah Buku                      |\n");
    printf("| 2.Tampilkan Buku                   |\n");
    printf("| 3.Hitung Buku                      |\n");
+   printf("| 4.Hapus Buku                       |\n");
    printf("| 0.Keluar                           |\n");
    printf("======================================\n");
 }
@@ -39,6 +41,9 @@ int main(){
          break;
       case 3:
          hitungBuku();
+         break;
+      case 4:
+         hapusBuku();
          break;
       case 0:
          system("cls");
