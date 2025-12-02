@@ -4,13 +4,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+#include "ansi.h"
 #include "buku.h"
 
 void tambahBuku(){
     system("cls");
 
     int jumlahInput;
+    printf(COLOR_BLUE);
     printf("\n================= TAMBAH BUKU =================\n");
+    printf(COLOR_RESET);
     printf("Berapa buku yang ingin ditambahkan?: ");
     scanf("%d", &jumlahInput);
     getchar();
@@ -24,7 +27,9 @@ void tambahBuku(){
 
     for (int i = 0; i < jumlahInput; i++){
         system("cls");
+        printf(COLOR_CYAN);
         printf("================= Buku ke-%d =================\n\n", i + 1);
+        printf(COLOR_RESET);
 
         printf("Judul Buku     : ");
         fgets(daftar[jumlahBuku].judul, 100, stdin);
@@ -47,12 +52,17 @@ void tambahBuku(){
 
     fclose(file);
 
-    printf("\n==============================================");
+    printf("\n");
+    printf(COLOR_GREEN);
+    printf("==============================================");
     printf("\n|            BUKU BERHASIL DITAMBAH          |");
     printf("\n==============================================\n");
+    printf(COLOR_RESET);
 
+    printf(COLOR_CYAN);
     printf("\nTekan ENTER untuk kembali");
     getchar();
+    printf(COLOR_RESET);
 }
 
 #endif

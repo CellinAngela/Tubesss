@@ -1,4 +1,5 @@
 #include "include/hitungBuku.h"
+#include "include/ansi.h"
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
@@ -27,9 +28,12 @@ int hitungJudulBukuDariFile() {
 
 void hitungBuku(){
     system("cls");
+    
+    printf(COLOR_BLUE);
     printf("\n==============================================\n");
     printf("|             HITUNG JUMLAH BUKU             |\n");
     printf("==============================================\n");
+    printf(COLOR_RESET);
 
     int totalJudul = hitungJudulBukuDariFile();
     int totalBuku = hitungTotalBuku(daftar, jumlahBuku);
@@ -38,7 +42,9 @@ void hitungBuku(){
     printf("Total Jumlah Buku di Perpustakaan: %d\n", totalJudul);
     
     printf("\n==============================================\n");
+    printf(COLOR_CYAN);
     printf("\nTekan ENTER untuk kembali");
     getchar();
+    printf(COLOR_RESET);
 }
 
