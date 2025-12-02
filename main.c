@@ -1,5 +1,7 @@
 // main.c
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <windows.h>
 #include "include/buku.h"
 #include "include/tambahBuku.h"
@@ -10,17 +12,27 @@
 #include "include/hapusBuku.h"
 #include "include/pinjamBuku.h"
 #include "include/kembalikanBuku.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <windows.h>
+#include "include/buku.h"
+#include "include/tambahBuku.h"
+#include "include/tampilkanBuku.h"
+#include "include/hitungBuku.h"
+#include "include/cariBuku.h"
+#include "include/editBuku.h"
+#include "include/hapusBuku.h"
+#include "include/pinjamBuku.h"
+#include "include/kembalikanBuku.h"
+#include "include/ansi.h"
 
-
-struct Buku daftar[100];      
+struct Buku daftar[100];
 int jumlahBuku = 0;
 
-// Load data from Perpustakaan.txt into daftar[] at startup
 static void trim(char *s) {
-   // remove trailing newline and carriage return
    size_t len = strlen(s);
    while (len > 0 && (s[len-1] == '\n' || s[len-1] == '\r')) { s[--len] = '\0'; }
-   // remove leading spaces
    char *start = s;
    while (*start == ' ' || *start == '\t') start++;
    if (start != s) memmove(s, start, strlen(start) + 1);
@@ -32,18 +44,15 @@ void loadPerpustakaan(){
 
    char line[256];
    struct Buku temp;
-   // initialize temp
    temp.isbn[0] = '\0'; temp.judul[0] = '\0'; temp.penulis[0] = '\0'; temp.tahun = 0; temp.stok = 1; temp.dipinjam = 0; temp.tanggal_kembali[0] = '\0';
    int hasAny = 0;
 
    while (fgets(line, sizeof(line), f)){
       trim(line);
       if (line[0] == '\0'){
-         // blank line -> end of entry
          if (hasAny && jumlahBuku < 100){
             daftar[jumlahBuku++] = temp;
          }
-         // reset temp
          temp.isbn[0] = '\0'; temp.judul[0] = '\0'; temp.penulis[0] = '\0'; temp.tahun = 0; temp.stok = 1; temp.dipinjam = 0; temp.tanggal_kembali[0] = '\0';
          hasAny = 0;
          continue;
@@ -51,7 +60,6 @@ void loadPerpustakaan(){
 
       char *colon = strchr(line, ':');
       if (!colon) continue;
-      // split key and value
       *colon = '\0';
       char *key = line;
       char *value = colon + 1;
@@ -84,7 +92,6 @@ void loadPerpustakaan(){
          hasAny = 1;
       }
    }
-   // last entry (no trailing blank line)
    if (hasAny && jumlahBuku < 100){
       daftar[jumlahBuku++] = temp;
    }
@@ -92,7 +99,6 @@ void loadPerpustakaan(){
    fclose(f);
 }
 
-// Save daftar[] back to Perpustakaan.txt
 void savePerpustakaan(){
    FILE *f = fopen("Perpustakaan.txt", "w");
    if (!f) {
@@ -116,9 +122,12 @@ void savePerpustakaan(){
 
 void tampilanFitur(){
    system("cls");
+   printf(COLOR_BLUE);
    printf("======================================");
    printf("\n|   SELAMAT DATANG DI PERPUSTAKAAN   |\n");
    printf("======================================\n");
+   printf(COLOR_RESET);
+   printf(COLOR_MAGENTA);
    printf("| 1.Tambah Buku                      |\n");
    printf("| 2.Tampilkan Buku                   |\n");
    printf("| 3.Hitung Buku                      |\n");
@@ -128,16 +137,22 @@ void tampilanFitur(){
    printf("| 7.Cari Buku                        |\n");
    printf("| 8.Edit Buku                        |\n");
    printf("| 0.Keluar                           |\n");
+   printf(COLOR_RESET);
+   printf(COLOR_BLUE);
    printf("======================================\n");
+   printf(COLOR_RESET);
 }
 
 int main(){
+   enableAnsiColors();
    loadPerpustakaan();
    int pilihan;
 
    while (1){
       tampilanFitur();
+      printf(COLOR_CYAN);
       printf("Pilih fitur: ");
+      printf(COLOR_RESET);
       scanf("%d", &pilihan);
       getchar();
 
@@ -168,10 +183,12 @@ int main(){
          break;
       case 0:
          system("cls");
+         printf(COLOR_BLUE);
          printf("==============================================\n");
          printf("|  Terimakasih Telah Datang ke Perpustakaan  |\n");
          printf("|              Datang Lagi Yaaa              |\n");
          printf("==============================================\n");
+         printf(COLOR_RESET);
          return 0;
       default:
          printf("Fitur yang kamu pilih tidak valid\n");

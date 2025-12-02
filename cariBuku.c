@@ -3,11 +3,11 @@
 #include <ctype.h>
 #include <windows.h>
 #include "include/buku.h"
+#include "include/ansi.h"
 
 extern struct Buku daftar[100];
 extern int jumlahBuku;
 
-// Convert string to lowercase
 static void toLower(char *str) {
     for (int i = 0; str[i]; i++) {
         str[i] = tolower((unsigned char)str[i]);
@@ -65,14 +65,18 @@ void tampilkanBukuDetail(int indeks) {
 
 void cariBuku() {
     system("cls");
+    printf(COLOR_BLUE);
     printf("======================================\n");
     printf("|         CARI DATA BUKU (MENU)      |\n");
     printf("======================================\n");
+    printf(COLOR_RESET);
 
     if (jumlahBuku == 0) {
         printf("Tidak ada buku dalam daftar.\n");
+        printf(COLOR_CYAN);
         printf("\nTekan ENTER untuk kembali...");
         getchar();
+        printf(COLOR_RESET);
         return;
     }
 
@@ -191,6 +195,8 @@ void cariBuku() {
         printf("\nPilihan tidak valid.\n");
     }
 
+    printf(COLOR_CYAN);
     printf("\nTekan ENTER untuk kembali");
     getchar();
+    printf(COLOR_RESET);
 }
