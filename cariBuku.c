@@ -1,14 +1,21 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #include <windows.h>
 #include "include/buku.h"
 
 extern struct Buku daftar[100];
 extern int jumlahBuku;
 
+// Convert string to lowercase
+static void toLower(char *str) {
+    for (int i = 0; str[i]; i++) {
+        str[i] = tolower((unsigned char)str[i]);
+    }
+}
+
 int cariBukuByISBN(char *isbnCari) {
     for (int i = 0; i < jumlahBuku; i++) {
-        
         if (strcmp(daftar[i].isbn, isbnCari) == 0) {
             return i; 
         }
@@ -17,8 +24,18 @@ int cariBukuByISBN(char *isbnCari) {
 }
 
 int cariBukuByJudul(char *judulCari) {
+    char judulLower[100];
+    strncpy(judulLower, judulCari, sizeof(judulLower)-1);
+    judulLower[sizeof(judulLower)-1] = '\0';
+    toLower(judulLower);
+    
     for (int i = 0; i < jumlahBuku; i++) {
-        if (strstr(daftar[i].judul, judulCari) != NULL) {
+        char judulTmp[100];
+        strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp)-1);
+        judulTmp[sizeof(judulTmp)-1] = '\0';
+        toLower(judulTmp);
+        
+        if (strstr(judulTmp, judulLower) != NULL) {
             return i; 
         }
     }
@@ -95,13 +112,23 @@ void cariBuku() {
         fgets(judulCari, sizeof(judulCari), stdin);
         judulCari[strcspn(judulCari, "\n")] = 0;
         
+        char judulLower[100];
+        strncpy(judulLower, judulCari, sizeof(judulLower)-1);
+        judulLower[sizeof(judulLower)-1] = '\0';
+        toLower(judulLower);
+        
         int found = 0;
         printf("\n======================================\n");
         printf("|         HASIL PENCARIAN JUDUL       |\n");
         printf("======================================\n");
         
         for (int i = 0; i < jumlahBuku; i++) {
-            if (strstr(daftar[i].judul, judulCari) != NULL) {
+            char judulTmp[100];
+            strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp)-1);
+            judulTmp[sizeof(judulTmp)-1] = '\0';
+            toLower(judulTmp);
+            
+            if (strstr(judulTmp, judulLower) != NULL) {
                 found++;
                 printf("\n--- Buku %d ---\n", found);
                 tampilkanBukuDetail(i);
@@ -123,6 +150,13 @@ void cariBuku() {
         fgets(judulCari, sizeof(judulCari), stdin);
         judulCari[strcspn(judulCari, "\n")] = 0;
         
+        char judulLower[100];
+        if (judulCari[0] != '\0') {
+            strncpy(judulLower, judulCari, sizeof(judulLower)-1);
+            judulLower[sizeof(judulLower)-1] = '\0';
+            toLower(judulLower);
+        }
+        
         int found = 0;
         printf("\n======================================\n");
         printf("|      HASIL PENCARIAN (ISBN & JUDUL) |\n");
@@ -130,7 +164,17 @@ void cariBuku() {
         
         for (int i = 0; i < jumlahBuku; i++) {
             int matchISBN = (isbnCari[0] == '\0') || (strcmp(daftar[i].isbn, isbnCari) == 0);
-            int matchJudul = (judulCari[0] == '\0') || (strstr(daftar[i].judul, judulCari) != NULL);
+            
+            int matchJudul = 0;
+            if (judulCari[0] == '\0') {
+                matchJudul = 1;
+            } else {
+                char judulTmp[100];
+                strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp)-1);
+                judulTmp[sizeof(judulTmp)-1] = '\0';
+                toLower(judulTmp);
+                matchJudul = (strstr(judulTmp, judulLower) != NULL);
+            }
             
             if (matchISBN && matchJudul) {
                 found++;
