@@ -1,4 +1,4 @@
-// fitur/kembalikanBuku.h
+
 #ifndef KEMBALIKANBUKU_H
 #define KEMBALIKANBUKU_H
 
@@ -35,7 +35,7 @@ void kembalikanBuku() {
         return;
     }
 
-    // Read all lines into memory
+ 
     char lines[2000][256];
     int n = 0;
     while (fgets(lines[n], sizeof(lines[n]), file) != NULL && n < 1999) {
@@ -44,7 +44,6 @@ void kembalikanBuku() {
     fclose(file);
 
     int foundIndex = -1;
-    // prepare lowercase search terms
     char judulLower[100];
     char penulisLower[100];
     strncpy(judulLower, judul, sizeof(judulLower)-1); judulLower[sizeof(judulLower)-1] = '\0';
@@ -81,12 +80,9 @@ void kembalikanBuku() {
         return;
     }
 
-    // Check for status lines after the book block
     int i = foundIndex + 1;
-    // find end of book block (blank line or next Judul Buku)
     while (i < n && strlen(lines[i]) > 1 && strncmp(lines[i], "Judul Buku", 10) != 0) i++;
 
-    // Now scan between foundIndex and i for status
     int statusLineIndex = -1;
     for (int j = foundIndex; j < i; j++) {
         if (strstr(lines[j], "Status: Sedang dipinjam") != NULL) {
@@ -104,7 +100,6 @@ void kembalikanBuku() {
         return;
     }
 
-    // Create temp file without the status block (assume 4 lines: Status, Tanggal Pinjam, Lama Peminjaman, Tanggal Kembali)
     FILE *temp = fopen("temp.txt", "w");
     if (!temp) {
         printf("Gagal membuat file sementara.\n");
@@ -117,11 +112,9 @@ void kembalikanBuku() {
 
     for (int k = 0; k < n; k++) {
         if (k == statusLineIndex) {
-            // skip up to 4 lines (and possibly an extra blank line)
             int skip = 0;
             int kk = k;
             while (kk < n && skip < 6) {
-                // stop skipping when reach blank line indicating block end
                 if (strlen(lines[kk]) <= 1) { kk++; break; }
                 kk++; skip++;
             }
