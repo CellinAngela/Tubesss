@@ -39,6 +39,9 @@ Dipinjam : 1
 Tanggal Kembali : 03-12-2025
 
 ISBN : 006
+Judul Buku     : 
+Nama Penulis   : 
+Tahun Terbit   : 0
 Stok : 1
 Dipinjam : 0
 Tanggal Kembali : 
