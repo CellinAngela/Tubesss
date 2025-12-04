@@ -9,7 +9,7 @@
 
 void hapusBuku()
 {
-    system("cls");
+    system("cls"); // clears screen
     char judulHapus[100];
     int ditemukan = 0;
 
@@ -37,7 +37,7 @@ void hapusBuku()
 
     while (fgets(line, sizeof(line), file))
     {
-        if (strncmp(line, "Judul Buku", 10) == 0)
+        if (strncmp(line, "Judul Buku", 10) == 0) // strncmp untuk cek apakah line diawali dengan Judul Buku
         {
             if (strstr(line, judulHapus) != NULL)
             {

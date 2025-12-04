@@ -11,7 +11,7 @@ extern void savePerpustakaan();
 
 void editBuku()
 {
-    system("cls");
+    system("cls"); // clear screen
     printf(COLOR_BLUE);
     printf("======================================\n");
     printf("|           EDIT DATA BUKU           |\n");
@@ -22,7 +22,7 @@ void editBuku()
     {
         printf("Tidak ada buku yang bisa diedit.\n");
         printf(COLOR_CYAN);
-        printf("\nTekan ENTER untuk kembali...");
+        printf("\nTekan ENTER untuk kembali");
         getchar();
         printf(COLOR_RESET);
         return;
@@ -41,19 +41,19 @@ void editBuku()
     if (pilihanCari == 0)
         return;
 
-    int indeks = -1;
+    int indeks = -1; // blm paham
     char judulCari[100];
     char penulisC[100];
 
     if (pilihanCari == 1)
     {
         printf("\nMasukkan Judul buku yang ingin diedit: ");
-        fgets(judulCari, sizeof(judulCari), stdin);
-        judulCari[strcspn(judulCari, "\n")] = 0;
+        fgets(judulCari, sizeof(judulCari), stdin); // stdin untuk membaca inputan dan disimpan ke judulCari
+        judulCari[strcspn(judulCari, "\n")] = 0; // strcspn untuk menghapus baris baru char
 
         for (int i = 0; i < jumlahBuku; i++)
         {
-            if (strstr(daftar[i].judul, judulCari) != NULL)
+            if (strstr(daftar[i].judul, judulCari) != NULL) //strstr untuk mencari apakah judulBuku ada didaftar
             {
                 indeks = i;
                 break;
@@ -108,7 +108,7 @@ void editBuku()
         scanf("%d", &pilihanEdit);
         getchar();
 
-        int changed = 0;
+        int changed = 0; // untuk memberi penanda apakah ada perubahan
 
         switch (pilihanEdit)
         {
@@ -130,9 +130,7 @@ void editBuku()
             printf("Masukkan Tahun Baru: ");
             scanf("%d", &daftar[indeks].tahun);
             getchar();
-            printf(COLOR_GREEN);
             printf("\nTahun buku berhasil diubah.\n");
-            printf(COLOR_RESET);
             changed = 1;
             break;
         case 4:
@@ -158,18 +156,17 @@ void editBuku()
             printf("Anda yakin ingin menghapus buku ini?\n");
             printf("Judul: %s\n", daftar[indeks].judul);
             printf("Penulis: %s\n", daftar[indeks].penulis);
-            printf("Ketik 'y' untuk hapus, atau apapun untuk batal: ");
+            printf("Ketik 'Ya' untuk hapus, atau apapun untuk batal: ");
             scanf("%c", &confirm);
             getchar();
 
-            if (confirm == 'y' || confirm == 'Y')
+            if (confirm == 'ya' || confirm == 'Ya')
             {
-                // Hapus dari array dengan shift
                 for (int i = indeks; i < jumlahBuku - 1; i++)
                 {
                     daftar[i] = daftar[i + 1];
                 }
-                jumlahBuku--;
+                jumlahBuku--; // mengurangi total 1 buku setiap kali dihapus
                 printf(COLOR_GREEN);
                 printf("==============================================\n");
                 printf("|            BUKU BERHASIL DIHAPUS           |\n");
