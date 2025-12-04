@@ -1,7 +1,7 @@
 #ifndef BUKU_H
 #define BUKU_H
 
-struct Buku {
+struct Buku{
     char judul[100];
     char penulis[100];
     int tahun;

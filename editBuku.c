@@ -9,8 +9,7 @@ extern struct Buku daftar[100];
 extern int jumlahBuku;
 extern void savePerpustakaan();
 
-void editBuku()
-{
+void editBuku(){
     system("cls");
     printf(COLOR_BLUE);
     printf("======================================\n");
@@ -18,8 +17,7 @@ void editBuku()
     printf("======================================\n");
     printf(COLOR_RESET);
 
-    if (jumlahBuku == 0)
-    {
+    if (jumlahBuku == 0){
         printf("Tidak ada buku yang bisa diedit.\n");
         printf(COLOR_CYAN);
         printf("\nTekan ENTER untuk kembali...");
@@ -45,38 +43,31 @@ void editBuku()
     char judulCari[100];
     char penulisC[100];
 
-    if (pilihanCari == 1)
-    {
+    if (pilihanCari == 1){
         printf("\nMasukkan Judul buku yang ingin diedit: ");
         fgets(judulCari, sizeof(judulCari), stdin);
         judulCari[strcspn(judulCari, "\n")] = 0;
 
-        for (int i = 0; i < jumlahBuku; i++)
-        {
-            if (strstr(daftar[i].judul, judulCari) != NULL)
-            {
+        for (int i = 0; i < jumlahBuku; i++){
+            if (strstr(daftar[i].judul, judulCari) != NULL){
                 indeks = i;
                 break;
             }
         }
     }
-    else if (pilihanCari == 2)
-    {
+    else if (pilihanCari == 2){
         printf("\nMasukkan Nama Penulis buku yang ingin diedit: ");
         fgets(penulisC, sizeof(penulisC), stdin);
         penulisC[strcspn(penulisC, "\n")] = 0;
 
-        for (int i = 0; i < jumlahBuku; i++)
-        {
-            if (strstr(daftar[i].penulis, penulisC) != NULL)
-            {
+        for (int i = 0; i < jumlahBuku; i++){
+            if (strstr(daftar[i].penulis, penulisC) != NULL){
                 indeks = i;
                 break;
             }
         }
     }
-    else
-    {
+    else{
         printf("\nPilihan tidak valid.\n");
         printf(COLOR_CYAN);
         printf("\nTekan ENTER untuk kembali");
@@ -85,16 +76,15 @@ void editBuku()
         return;
     }
 
-    if (indeks != -1)
-    {
+    if (indeks != -1){
         int pilihanEdit;
 
-        printf("\nBuku Ditemukan:\n");
-        printf("Judul saat ini: %s\n", daftar[indeks].judul);
-        printf("Penulis saat ini: %s\n", daftar[indeks].penulis);
-        printf("Tahun: %d\n", daftar[indeks].tahun);
-        printf("Stok saat ini: %d\n", daftar[indeks].stok);
-        printf("Dipinjam: %d\n", daftar[indeks].dipinjam);
+        printf("\nBuku Ditemukan :\n");
+        printf("Judul saat ini   : %s\n", daftar[indeks].judul);
+        printf("Penulis saat ini : %s\n", daftar[indeks].penulis);
+        printf("Tahun            : %d\n", daftar[indeks].tahun);
+        printf("Stok saat ini    : %d\n", daftar[indeks].stok);
+        printf("Dipinjam         : %d\n", daftar[indeks].dipinjam);
 
         printf("\n--- Pilih Data yang akan Diedit ---\n");
         printf("1. Edit Judul\n");
@@ -110,8 +100,7 @@ void editBuku()
 
         int changed = 0;
 
-        switch (pilihanEdit)
-        {
+        switch (pilihanEdit){
         case 1:
             printf("Masukkan Judul Baru (max 100 karakter): ");
             fgets(daftar[indeks].judul, 100, stdin);
@@ -149,24 +138,21 @@ void editBuku()
             printf("\nJumlah dipinjam berhasil diubah.\n");
             changed = 1;
             break;
-        case 6:
-        {
+        case 6:{
             char confirm;
             printf("\n" COLOR_RED);
             printf("======== PERHATIAN: HAPUS BUKU ========\n");
             printf(COLOR_RESET);
             printf("Anda yakin ingin menghapus buku ini?\n");
-            printf("Judul: %s\n", daftar[indeks].judul);
-            printf("Penulis: %s\n", daftar[indeks].penulis);
+            printf("Judul   : %s\n", daftar[indeks].judul);
+            printf("Penulis : %s\n", daftar[indeks].penulis);
             printf("Ketik 'y' untuk hapus, atau apapun untuk batal: ");
             scanf("%c", &confirm);
             getchar();
 
-            if (confirm == 'y' || confirm == 'Y')
-            {
+            if (confirm == 'y' || confirm == 'Y'){
                 // Hapus dari array dengan shift
-                for (int i = indeks; i < jumlahBuku - 1; i++)
-                {
+                for (int i = indeks; i < jumlahBuku - 1; i++){
                     daftar[i] = daftar[i + 1];
                 }
                 jumlahBuku--;
@@ -177,8 +163,7 @@ void editBuku()
                 printf(COLOR_RESET);
                 changed = 1;
             }
-            else
-            {
+            else{
                 printf("Penghapusan dibatalkan.\n");
             }
             break;
@@ -191,8 +176,7 @@ void editBuku()
             break;
         }
 
-        if (changed)
-        {
+        if (changed){
             savePerpustakaan();
             printf(COLOR_GREEN);
             printf("==============================================");
@@ -201,9 +185,8 @@ void editBuku()
             printf(COLOR_RESET);
         }
     }
-    else
-    {
-        printf("\nBuku tidak ditemukan. Gagal Edit.\n");
+    else{
+        printf("\nBuku tidak ditemukan. Gagal Edit\n");
     }
     printf(COLOR_CYAN);
     printf("\nTekan ENTER untuk kembali");
