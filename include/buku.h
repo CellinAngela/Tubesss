@@ -2,7 +2,6 @@
 #define BUKU_H
 
 struct Buku {
-    char isbn[32];
     char judul[100];
     char penulis[100];
     int tahun;

@@ -3,7 +3,5 @@
 
     void cariBuku();
     int cariBukuByJudul(const char *judul);
-    int cariBukuByISBN(const char *isbn);
-
     
 #endif
