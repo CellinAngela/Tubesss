@@ -145,3 +145,22 @@ Stok            : 1
 Dipinjam        : 0
 Tanggal Kembali : 
 
+Judul Buku      : BBBBB
+Nama Penulis    : ccccc
+Tahun Terbit    : 2025
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : Abcde
+Nama Penulis    : Efghi
+Tahun Terbit    : 2021
+Stok            : 50
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : Tuvwx
+Nama Penulis    : Yzabc
+Tahun Terbit    : 2025
+Stok            : 50
+

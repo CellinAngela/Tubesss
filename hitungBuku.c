@@ -1,20 +1,22 @@
 #include "include/hitungBuku.h"
 #include "include/ansi.h"
+#include "include/buku.h"
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
 
-int hitungJudulBukuDariFile() {
+int hitungJudulBukuDariFile(){
     FILE *file = fopen("Perpustakaan.txt", "r");
-    if (!file) return 0;
+    if (!file)
+        return 0;
 
     int count = 0;
     char line[256];
 
-    while (fgets(line, sizeof(line), file)) {
+    while (fgets(line, sizeof(line), file)){
         line[strcspn(line, "\n")] = 0;
 
-        if (strncmp(line, "Judul Buku", 10) == 0) {
+        if (strncmp(line, "Judul Buku", 10) == 0){
             count++;
         }
     }
@@ -23,7 +25,7 @@ int hitungJudulBukuDariFile() {
     return count;
 }
 
-void hitungBuku() {
+void hitungBuku(){
     system("cls");
 
     printf(COLOR_BLUE);
@@ -34,7 +36,15 @@ void hitungBuku() {
 
     int total = hitungJudulBukuDariFile();
 
-    printf("\nTotal Buku di Rak              : %d\n", total);
+    extern int jumlahBuku;
+    extern int jumlahBukuBaru;
+    int totalBukuDiRak = jumlahBuku;
+    int totalBaruDitambahkan = totalBukuDiRak - jumlahBukuBaru;
+    if (totalBaruDitambahkan < 0)
+        totalBaruDitambahkan = 0;
+
+    printf("\nTotal Buku yang Baru Ditambahkan : %d\n", totalBaruDitambahkan);
+    printf("\nTotal Buku di Rak                : %d\n", total);
 
     printf("\n==============================================\n");
     printf(COLOR_CYAN);

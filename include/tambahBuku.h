@@ -41,11 +41,15 @@ void tambahBuku(){
 
         printf("Tahun Terbit    : ");
         scanf("%d", &daftar[jumlahBuku].tahun);
+
+        printf("Stok            : ");
+        scanf("%d", &daftar[jumlahBuku].stok);
         getchar();
 
         fprintf(file, "Judul Buku      : %s\n", daftar[jumlahBuku].judul);
         fprintf(file, "Nama Penulis    : %s\n", daftar[jumlahBuku].penulis);
-        fprintf(file, "Tahun Terbit    : %d\n\n", daftar[jumlahBuku].tahun);
+        fprintf(file, "Tahun Terbit    : %d\n", daftar[jumlahBuku].tahun);
+        fprintf(file, "Stok            : %d\n\n", daftar[jumlahBuku].stok);
 
         jumlahBuku++;
     }

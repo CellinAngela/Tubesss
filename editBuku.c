@@ -9,17 +9,19 @@ extern struct Buku daftar[100];
 extern int jumlahBuku;
 extern void savePerpustakaan();
 
-void editBuku()
-{
+void editBuku(){
     system("cls"); // clear screen
     printf(COLOR_BLUE);
     printf("======================================\n");
     printf("|           EDIT DATA BUKU           |\n");
     printf("======================================\n");
     printf(COLOR_RESET);
+    printf("Format Penulisan:\n");
+    printf(" - Judul dan Penulis harus ditulis PERSIS sama\n");
+    printf("   Judul Buku: The Metamorphosis ------- benar\n");
+    printf("   Judul Buku: the metamorphosis ------- salah\n\n");
 
-    if (jumlahBuku == 0)
-    {
+    if (jumlahBuku == 0){
         printf("Tidak ada buku yang bisa diedit.\n");
         printf(COLOR_CYAN);
         printf("\nTekan ENTER untuk kembali");
@@ -35,8 +37,7 @@ void editBuku()
     printf("Pilihan: ");
 
     int pilihanCari;
-    if (scanf("%d", &pilihanCari) != 1)
-    {
+    if (scanf("%d", &pilihanCari) != 1){
         int c; // variabel sementara
         while ((c = getchar()) != '\n' && c != EOF) // membuang input yang tidak valid
         {
@@ -52,38 +53,31 @@ void editBuku()
     char judulCari[100] = {0};
     char penulisC[100] = {0};
 
-    if (pilihanCari == 1)
-    {
+    if (pilihanCari == 1){
         printf("\nMasukkan Judul buku yang ingin diedit: ");
         fgets(judulCari, sizeof(judulCari), stdin); // stdin untuk membaca inputan dan disimpan ke judulCari
         judulCari[strcspn(judulCari, "\n")] = 0; // strcspn untuk menghapus baris baru char
 
-        for (int i = 0; i < jumlahBuku; i++)
-        {
-            if (strstr(daftar[i].judul, judulCari) != NULL) // strstr untuk mencari apakah judul buku ada di daftar
-            {
+        for (int i = 0; i < jumlahBuku; i++){
+            if (strstr(daftar[i].judul, judulCari) != NULL){ // strstr untuk mencari apakah judul buku ada di daftar
                 indeks = i;
                 break;
             }
         }
     }
-    else if (pilihanCari == 2)
-    {
+    else if (pilihanCari == 2){
         printf("\nMasukkan Nama Penulis buku yang ingin diedit: ");
         fgets(penulisC, sizeof(penulisC), stdin);
         penulisC[strcspn(penulisC, "\n")] = 0;
 
-        for (int i = 0; i < jumlahBuku; i++)
-        {
-            if (strstr(daftar[i].penulis, penulisC) != NULL)
-            {
+        for (int i = 0; i < jumlahBuku; i++){
+            if (strstr(daftar[i].penulis, penulisC) != NULL){
                 indeks = i;
                 break;
             }
         }
     }
-    else
-    {
+    else{
         printf("\nPilihan tidak valid.\n");
         printf(COLOR_CYAN);
         printf("\nTekan ENTER untuk kembali");
@@ -92,8 +86,7 @@ void editBuku()
         return;
     }
 
-    if (indeks == -1) // untuk mengecek apakah data buku tidak ditemukan
-    {
+    if (indeks == -1){ // untuk mengecek apakah data buku tidak ditemukan
         printf("\nBuku tidak ditemukan. Gagal Edit\n");
         printf(COLOR_CYAN);
         printf("\nTekan ENTER untuk kembali");
@@ -120,8 +113,7 @@ void editBuku()
     printf("6. Hapus Buku\n");
     printf("0. Batal Edit\n");
     printf("Pilihan: ");
-    if (scanf("%d", &pilihanEdit) != 1) //mengecek input berupa angka atau tidak
-    {
+    if (scanf("%d", &pilihanEdit) != 1){ //mengecek input berupa angka atau tidak
         int c;
         while ((c = getchar()) != '\n' && c != EOF)
         {
@@ -132,8 +124,7 @@ void editBuku()
 
     int changed = 0;
 
-    switch (pilihanEdit)
-    {
+    switch (pilihanEdit){
     case 1:
         printf("Masukkan Judul Baru (max 100 karakter): ");
         fgets(daftar[indeks].judul, 100, stdin);
@@ -150,8 +141,7 @@ void editBuku()
         break;
     case 3:
         printf("Masukkan Tahun Baru: ");
-        if (scanf("%d", &daftar[indeks].tahun) == 1)
-        {
+        if (scanf("%d", &daftar[indeks].tahun) == 1){
             getchar();
         }
         printf("\nTahun buku berhasil diubah.\n");
@@ -159,8 +149,7 @@ void editBuku()
         break;
     case 4:
         printf("Masukkan Stok Buku Baru: ");
-        if (scanf("%d", &daftar[indeks].stok) == 1)
-        {
+        if (scanf("%d", &daftar[indeks].stok) == 1){
             getchar();
         }
         printf("\nStok buku berhasil diubah.\n");
@@ -168,15 +157,13 @@ void editBuku()
         break;
     case 5:
         printf("Masukkan Jumlah Dipinjam: ");
-        if (scanf("%d", &daftar[indeks].dipinjam) == 1)
-        {
+        if (scanf("%d", &daftar[indeks].dipinjam) == 1){
             getchar();
         }
         printf("\nJumlah dipinjam berhasil diubah.\n");
         changed = 1;
         break;
-    case 6:
-    {
+    case 6:{
         char confirm;
         printf("\n" COLOR_RED);
         printf("======== PERHATIAN: HAPUS BUKU ========\n");
@@ -185,15 +172,12 @@ void editBuku()
         printf("Judul   : %s\n", daftar[indeks].judul);
         printf("Penulis : %s\n", daftar[indeks].penulis);
         printf("Ketik 'y' untuk hapus, atau apapun untuk batal: ");
-        if (scanf(" %c", &confirm) == 1)
-        {
+        if (scanf(" %c", &confirm) == 1){
             getchar();
         }
 
-        if (confirm == 'y' || confirm == 'Y')
-        {
-            for (int j = indeks; j < jumlahBuku - 1; j++)
-            {
+        if (confirm == 'y' || confirm == 'Y'){
+            for (int j = indeks; j < jumlahBuku - 1; j++){
                 daftar[j] = daftar[j + 1];
             }
             jumlahBuku--; // mengurangi total 1 buku setiap kali dihapus
@@ -204,8 +188,7 @@ void editBuku()
             printf(COLOR_RESET);
             changed = 1;
         }
-        else
-        {
+        else{
             printf("Penghapusan dibatalkan.\n");
         }
         break;
@@ -218,8 +201,7 @@ void editBuku()
         break;
     }
 
-    if (changed)
-    {
+    if (changed){
         savePerpustakaan();
         printf(COLOR_GREEN);
         printf("==============================================\n");

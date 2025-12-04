@@ -3,8 +3,7 @@
 #ifdef _WIN32
 #include <windows.h>
 #include <stdio.h>
-void enableAnsiColors()
-{
+void enableAnsiColors(){
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     if (hOut == INVALID_HANDLE_VALUE)
         return;
@@ -16,4 +15,5 @@ void enableAnsiColors()
 }
 #else
 void enableAnsiColors() {}
+
 #endif

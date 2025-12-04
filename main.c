@@ -14,6 +14,7 @@
 
 struct Buku daftar[100];
 int jumlahBuku = 0;
+int jumlahBukuBaru = 0;
 
 static void trim(char *s){
    size_t len = strlen(s);
@@ -148,6 +149,7 @@ void tampilanFitur(){
 int main(){
    enableAnsiColors();
    loadPerpustakaan();
+   jumlahBukuBaru = jumlahBuku;
    int pilihan;
 
    while (1){
@@ -162,23 +164,23 @@ int main(){
       case 1:
          tambahBuku();
          break;
-      case 4:
-         pinjamBuku();
-         break;
-      case 7:
-         editBuku();
-         break;
-      case 6:
-         cariBuku();
-         break;
-      case 5:
-         kembalikanBuku();
-         break;
       case 2:
          tampilkanBuku();
          break;
       case 3:
          hitungBuku();
+         break;
+      case 4:
+         pinjamBuku();
+         break;
+      case 5:
+         kembalikanBuku();
+         break;
+      case 6:
+         cariBuku();
+         break;
+      case 7:
+         editBuku();
          break;
       case 0:
          system("cls");

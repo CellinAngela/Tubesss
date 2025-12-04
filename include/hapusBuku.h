@@ -7,8 +7,7 @@
 #include "buku.h"
 #include "ansi.h"
 
-void hapusBuku()
-{
+void hapusBuku(){
     system("cls"); // clears screen
     char judulHapus[100];
     int ditemukan = 0;
@@ -34,12 +33,9 @@ void hapusBuku()
 
     char line[100];
 
-    while (fgets(line, sizeof(line), file))
-    {
-        if (strncmp(line, "Judul Buku", 10) == 0) // strncmp untuk cek apakah line diawali dengan Judul Buku
-        {
-            if (strstr(line, judulHapus) != NULL)
-            {
+    while (fgets(line, sizeof(line), file)){
+        if (strncmp(line, "Judul Buku", 10) == 0){ // strncmp untuk cek apakah line diawali dengan Judul Buku
+            if (strstr(line, judulHapus) != NULL){
                 ditemukan = 1;
                 fgets(line, sizeof(line), file);
                 fgets(line, sizeof(line), file);

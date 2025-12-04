@@ -17,6 +17,14 @@ void pinjamBuku(){
     printf(COLOR_BLUE);
     printf("\n================= PEMINJAMAN BUKU =================\n\n");
     printf(COLOR_RESET);
+
+    printf(COLOR_RED);
+    printf("Format Penulisan:\n");
+    printf(" - Judul dan Penulis harus ditulis PERSIS sama\n");
+    printf("   Judul Buku: The Metamorphosis ------- benar\n");
+    printf("   Judul Buku: the metamorphosis ------- salah\n\n");
+    printf(COLOR_RESET);
+
     printf("Masukkan Judul Buku   : ");
     fgets(judul, sizeof(judul), stdin);
     judul[strcspn(judul, "\n")] = 0;
@@ -41,27 +49,34 @@ void pinjamBuku(){
         n++;
     }
     fclose(file);
-
     int foundIndex = -1;
     char judulLower[100];
     char penulisLower[100];
-    strncpy(judulLower, judul, sizeof(judulLower)-1); judulLower[sizeof(judulLower)-1] = '\0';
-    strncpy(penulisLower, penulis, sizeof(penulisLower)-1); penulisLower[sizeof(penulisLower)-1] = '\0';
-    for (int k = 0; judulLower[k]; k++) judulLower[k] = tolower((unsigned char)judulLower[k]);
-    for (int k = 0; penulisLower[k]; k++) penulisLower[k] = tolower((unsigned char)penulisLower[k]);
+    strncpy(judulLower, judul, sizeof(judulLower) - 1);
+    judulLower[sizeof(judulLower) - 1] = '\0';
+    strncpy(penulisLower, penulis, sizeof(penulisLower) - 1);
+    penulisLower[sizeof(penulisLower) - 1] = '\0';
+    for (int k = 0; judulLower[k]; k++)
+        judulLower[k] = tolower((unsigned char)judulLower[k]);
+    for (int k = 0; penulisLower[k]; k++)
+        penulisLower[k] = tolower((unsigned char)penulisLower[k]);
 
     for (int i = 0; i < n; i++){
         if (strncmp(lines[i], "Judul Buku", 10) == 0){
             char lineLower[256];
-            strncpy(lineLower, lines[i], sizeof(lineLower)-1); lineLower[sizeof(lineLower)-1] = '\0';
-            for (int k = 0; lineLower[k]; k++) lineLower[k] = tolower((unsigned char)lineLower[k]);
+            strncpy(lineLower, lines[i], sizeof(lineLower) - 1);
+            lineLower[sizeof(lineLower) - 1] = '\0';
+            for (int k = 0; lineLower[k]; k++)
+                lineLower[k] = tolower((unsigned char)lineLower[k]);
 
             if (strstr(lineLower, judulLower) != NULL){
-                if (i+1 < n && strncmp(lines[i+1], "Nama Penulis", 12) == 0){
+                if (i + 1 < n && strncmp(lines[i + 1], "Nama Penulis", 12) == 0){
                     char penulisLineLower[256];
-                    strncpy(penulisLineLower, lines[i+1], sizeof(penulisLineLower)-1); penulisLineLower[sizeof(penulisLineLower)-1] = '\0';
-                    for (int k = 0; penulisLineLower[k]; k++) penulisLineLower[k] = tolower((unsigned char)penulisLineLower[k]);
-                    if (strstr(penulisLineLower, penulisLower) != NULL) {
+                    strncpy(penulisLineLower, lines[i + 1], sizeof(penulisLineLower) - 1);
+                    penulisLineLower[sizeof(penulisLineLower) - 1] = '\0';
+                    for (int k = 0; penulisLineLower[k]; k++)
+                        penulisLineLower[k] = tolower((unsigned char)penulisLineLower[k]);
+                    if (strstr(penulisLineLower, penulisLower) != NULL){
                         foundIndex = i;
                         break;
                     }
@@ -91,7 +106,7 @@ void pinjamBuku(){
 
     if (isBorrowed){
         printf("\nMaaf, buku ini saat ini sedang dipinjam\n");
-        printf(COLOR_CYAN); 
+        printf(COLOR_CYAN);
         printf("Tekan ENTER untuk kembali");
         getchar();
         printf(COLOR_RESET);
@@ -128,7 +143,8 @@ void pinjamBuku(){
         if (i == foundIndex){
             int k = i + 1;
             int end = k;
-            while (end < n && strlen(lines[end]) > 1) end++;
+            while (end < n && strlen(lines[end]) > 1)
+                end++;
 
             for (int j = i + 1; j < end; j++){
                 fputs(lines[j], temp);
@@ -138,7 +154,8 @@ void pinjamBuku(){
             fprintf(temp, "Tanggal Pinjam  : %s\n", tanggalPinjam);
             fprintf(temp, "Lama Peminjaman : %d hari\n", lama);
             fprintf(temp, "Tanggal Kembali : %s\n", tanggalKembali);
-            if (end < n) fprintf(temp, "\n");
+            if (end < n)
+                fprintf(temp, "\n");
 
             i = end - 1;
         }

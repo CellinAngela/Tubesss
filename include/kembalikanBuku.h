@@ -16,6 +16,14 @@ void kembalikanBuku(){
     printf(COLOR_BLUE);
     printf("\n================= PENGEMBALIAN BUKU =================\n\n");
     printf(COLOR_RESET);
+
+    printf(COLOR_RED);
+    printf("Format Penulisan:\n");
+    printf(" - Judul dan Penulis harus ditulis PERSIS sama\n");
+    printf("   Judul Buku: The Metamorphosis ------- benar\n");
+    printf("   Judul Buku: the metamorphosis ------- salah\n\n");
+    printf(COLOR_RESET);
+    
     printf("Masukkan Judul Buku   : ");
     fgets(judul, sizeof(judul), stdin);
     judul[strcspn(judul, "\n")] = 0;
