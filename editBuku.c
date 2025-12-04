@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 #include <windows.h>
 #include "include/buku.h"
 #include "include/cariBuku.h"
@@ -30,8 +29,8 @@ void editBuku()
     }
 
     printf("\nPilih metode pencarian buku yang ingin diedit:\n");
-    printf("1. Cari berdasarkan Judul dan Penulis\n");
-    printf("2. Cari berdasarkan Judul\n");
+    printf("1. Cari berdasarkan Judul\n");
+    printf("2. Cari berdasarkan Penulis\n");
     printf("0. Kembali\n");
     printf("Pilihan: ");
 
@@ -43,44 +42,18 @@ void editBuku()
         return;
 
     int indeks = -1;
+    char judulCari[100];
+    char penulisC[100];
 
     if (pilihanCari == 1)
     {
-        char judulCari[100];
-        char penulisC[100];
         printf("\nMasukkan Judul buku yang ingin diedit: ");
         fgets(judulCari, sizeof(judulCari), stdin);
         judulCari[strcspn(judulCari, "\n")] = 0;
 
-        printf("Masukkan Nama Penulis: ");
-        fgets(penulisC, sizeof(penulisC), stdin);
-        penulisC[strcspn(penulisC, "\n")] = 0;
-
-        char judulLower[100];
-        char penulisLower[100];
-        strncpy(judulLower, judulCari, sizeof(judulLower) - 1);
-        judulLower[sizeof(judulLower) - 1] = '\0';
-        strncpy(penulisLower, penulisC, sizeof(penulisLower) - 1);
-        penulisLower[sizeof(penulisLower) - 1] = '\0';
-        for (int k = 0; judulLower[k]; k++)
-            judulLower[k] = tolower((unsigned char)judulLower[k]);
-        for (int k = 0; penulisLower[k]; k++)
-            penulisLower[k] = tolower((unsigned char)penulisLower[k]);
-
         for (int i = 0; i < jumlahBuku; i++)
         {
-            char judulTmp[100];
-            char penulisTemp[100];
-            strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp) - 1);
-            judulTmp[sizeof(judulTmp) - 1] = '\0';
-            strncpy(penulisTemp, daftar[i].penulis, sizeof(penulisTemp) - 1);
-            penulisTemp[sizeof(penulisTemp) - 1] = '\0';
-            for (int k = 0; judulTmp[k]; k++)
-                judulTmp[k] = tolower((unsigned char)judulTmp[k]);
-            for (int k = 0; penulisTemp[k]; k++)
-                penulisTemp[k] = tolower((unsigned char)penulisTemp[k]);
-
-            if (strstr(judulTmp, judulLower) != NULL && strstr(penulisTemp, penulisLower) != NULL)
+            if (strstr(daftar[i].judul, judulCari) != NULL)
             {
                 indeks = i;
                 break;
@@ -89,26 +62,13 @@ void editBuku()
     }
     else if (pilihanCari == 2)
     {
-        char judulCari[100];
-        printf("\nMasukkan Judul buku yang ingin diedit: ");
-        fgets(judulCari, sizeof(judulCari), stdin);
-        judulCari[strcspn(judulCari, "\n")] = 0;
-
-        char judulLower[100];
-        strncpy(judulLower, judulCari, sizeof(judulLower) - 1);
-        judulLower[sizeof(judulLower) - 1] = '\0';
-        for (int k = 0; judulLower[k]; k++)
-            judulLower[k] = tolower((unsigned char)judulLower[k]);
+        printf("\nMasukkan Nama Penulis buku yang ingin diedit: ");
+        fgets(penulisC, sizeof(penulisC), stdin);
+        penulisC[strcspn(penulisC, "\n")] = 0;
 
         for (int i = 0; i < jumlahBuku; i++)
         {
-            char judulTmp[100];
-            strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp) - 1);
-            judulTmp[sizeof(judulTmp) - 1] = '\0';
-            for (int k = 0; judulTmp[k]; k++)
-                judulTmp[k] = tolower((unsigned char)judulTmp[k]);
-
-            if (strstr(judulTmp, judulLower) != NULL)
+            if (strstr(daftar[i].penulis, penulisC) != NULL)
             {
                 indeks = i;
                 break;
@@ -117,7 +77,7 @@ void editBuku()
     }
     else
     {
-        printf("Pilihan tidak valid.\n");
+        printf("\nPilihan tidak valid.\n");
         printf(COLOR_CYAN);
         printf("\nTekan ENTER untuk kembali");
         getchar();

@@ -1,0 +1,42 @@
+Judul Buku     : Joel Hiacek
+Nama Penulis   : Nathan Jatuh
+Tahun Terbit   : 2025
+Stok : 0
+Dipinjam : 0
+Tanggal Kembali : 
+
+Judul Buku     : Bahasa Indonesia
+Nama Penulis   : Jawak
+Tahun Terbit   : 2025
+Stok : 0
+Dipinjam : 0
+Tanggal Kembali : 
+
+Judul Buku     : Agak Laen
+Nama Penulis   : IMAJINASI
+Tahun Terbit   : 2026
+Stok : 0
+Dipinjam : 0
+Tanggal Kembali : 
+
+Judul Buku     : Hobbit
+Nama Penulis   : Clarren
+Tahun Terbit   : 2013
+Stok : 30
+Dipinjam : 0
+Tanggal Kembali : 
+
+Judul Buku     : 1000 Kata Untuk Mu
+Nama Penulis   : tony stark
+Tahun Terbit   : 2023
+Stok : 0
+Dipinjam : 0
+Tanggal Kembali : 
+
+Judul Buku     : Seandainya
+Nama Penulis   : Kios
+Tahun Terbit   : 2025
+Stok : 0
+Dipinjam : 0
+Tanggal Kembali : 
+

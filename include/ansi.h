@@ -18,7 +18,7 @@
 #define COLOR_WHITE "\x1b[37m"
 #define COLOR_BRIGHT "\x1b[1m"
 
-// Enable ANSI escape processing on Windows consoles (no-op on other platforms)
+
 void enableAnsiColors();
 
 #endif

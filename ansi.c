@@ -15,5 +15,5 @@ void enableAnsiColors()
     SetConsoleMode(hOut, dwMode);
 }
 #else
-void enableAnsiColors() { /* nothing needed */ }
+void enableAnsiColors() {}
 #endif

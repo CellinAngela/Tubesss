@@ -1,44 +1,19 @@
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
 #include <windows.h>
 #include "include/buku.h"
 #include "include/ansi.h"
 
-extern struct Buku daftar[100];
-extern int jumlahBuku;
+struct Buku daftar[100];
+int jumlahBuku;
 
-static void toLower(char *str)
-{
-    for (int i = 0; str[i]; i++)
-    {
-        str[i] = tolower((unsigned char)str[i]);
-    }
-}
-
+// Cari buku berdasarkan judul dan penulis, mengembalikan indeks atau -1 jika tidak ditemukan
+// strstr untuku mencari substring di dalam string yang lebih besar.
 int cariBukuByJudulDanPenulis(char *judulCari, char *penulisC)
 {
-    char judulLower[100];
-    char penulisLower[100];
-    strncpy(judulLower, judulCari, sizeof(judulLower) - 1);
-    judulLower[sizeof(judulLower) - 1] = '\0';
-    strncpy(penulisLower, penulisC, sizeof(penulisLower) - 1);
-    penulisLower[sizeof(penulisLower) - 1] = '\0';
-    toLower(judulLower);
-    toLower(penulisLower);
-
     for (int i = 0; i < jumlahBuku; i++)
     {
-        char judulTmp[100];
-        char penulisTemp[100];
-        strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp) - 1);
-        judulTmp[sizeof(judulTmp) - 1] = '\0';
-        strncpy(penulisTemp, daftar[i].penulis, sizeof(penulisTemp) - 1);
-        penulisTemp[sizeof(penulisTemp) - 1] = '\0';
-        toLower(judulTmp);
-        toLower(penulisTemp);
-
-        if (strstr(judulTmp, judulLower) != NULL && strstr(penulisTemp, penulisLower) != NULL)
+        if (strstr(daftar[i].judul, judulCari) != NULL && strstr(daftar[i].penulis, penulisC) != NULL)
         {
             return i;
         }
@@ -48,19 +23,21 @@ int cariBukuByJudulDanPenulis(char *judulCari, char *penulisC)
 
 int cariBukuByJudul(char *judulCari)
 {
-    char judulLower[100];
-    strncpy(judulLower, judulCari, sizeof(judulLower) - 1);
-    judulLower[sizeof(judulLower) - 1] = '\0';
-    toLower(judulLower);
-
     for (int i = 0; i < jumlahBuku; i++)
     {
-        char judulTmp[100];
-        strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp) - 1);
-        judulTmp[sizeof(judulTmp) - 1] = '\0';
-        toLower(judulTmp);
+        if (strstr(daftar[i].judul, judulCari) != NULL)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 
-        if (strstr(judulTmp, judulLower) != NULL)
+int cariBukuByPenulis(char *penulisC)
+{
+    for (int i = 0; i < jumlahBuku; i++)
+    {
+        if (strstr(daftar[i].penulis, penulisC) != NULL)
         {
             return i;
         }
@@ -115,8 +92,8 @@ void cariBuku()
     }
 
     printf("\nPilih metode pencarian:\n");
-    printf("1. Cari berdasarkan Judul dan Penulis\n");
-    printf("2. Cari berdasarkan Judul\n");
+    printf("1. Cari berdasarkan Judul\n");
+    printf("2. Cari berdasarkan Penulis\n");
     printf("0. Kembali\n");
     printf("Pilihan: ");
 
@@ -130,16 +107,11 @@ void cariBuku()
     if (pilihan == 1)
     {
         char judulCari[100];
-        char penulisC[100];
         printf("\nMasukkan Judul buku yang ingin dicari: ");
         fgets(judulCari, sizeof(judulCari), stdin);
         judulCari[strcspn(judulCari, "\n")] = 0;
 
-        printf("Masukkan Nama Penulis: ");
-        fgets(penulisC, sizeof(penulisC), stdin);
-        penulisC[strcspn(penulisC, "\n")] = 0;
-
-        int indeks = cariBukuByJudulDanPenulis(judulCari, penulisC);
+        int indeks = cariBukuByJudul(judulCari);
         if (indeks != -1)
         {
             printf("\n======================================\n");
@@ -150,46 +122,29 @@ void cariBuku()
         }
         else
         {
-            printf("\nBuku dengan judul '%s' dan penulis '%s' tidak ditemukan.\n", judulCari, penulisC);
+            printf("\nBuku dengan judul '%s' tidak ditemukan.\n", judulCari);
         }
     }
     else if (pilihan == 2)
     {
-        char judulCari[100];
-        printf("\nMasukkan Judul buku yang ingin dicari: ");
-        fgets(judulCari, sizeof(judulCari), stdin);
-        judulCari[strcspn(judulCari, "\n")] = 0;
+        char penulisC[100];
+        printf("\nMasukkan Nama Penulis buku yang ingin dicari: ");
+        fgets(penulisC, sizeof(penulisC), stdin);
+        penulisC[strcspn(penulisC, "\n")] = 0;
 
-        char judulLower[100];
-        strncpy(judulLower, judulCari, sizeof(judulLower) - 1);
-        judulLower[sizeof(judulLower) - 1] = '\0';
-        toLower(judulLower);
-
-        int found = 0;
-        printf("\n======================================\n");
-        printf("|         HASIL PENCARIAN JUDUL       |\n");
-        printf("======================================\n");
-
-        for (int i = 0; i < jumlahBuku; i++)
+        int indeks = cariBukuByPenulis(penulisC);
+        if (indeks != -1)
         {
-            char judulTmp[100];
-            strncpy(judulTmp, daftar[i].judul, sizeof(judulTmp) - 1);
-            judulTmp[sizeof(judulTmp) - 1] = '\0';
-            toLower(judulTmp);
-
-            if (strstr(judulTmp, judulLower) != NULL)
-            {
-                found++;
-                printf("\n--- Buku %d ---\n", found);
-                tampilkanBukuDetail(i);
-            }
+            printf("\n======================================\n");
+            printf("|              BUKU DITEMUKAN        |\n");
+            printf("======================================\n");
+            tampilkanBukuDetail(indeks);
+            printf("======================================\n");
         }
-
-        if (found == 0)
+        else
         {
-            printf("Tidak ada buku dengan judul '%s'.\n", judulCari);
+            printf("\nBuku dengan penulis '%s' tidak ditemukan.\n", penulisC);
         }
-        printf("======================================\n");
     }
     else
     {
