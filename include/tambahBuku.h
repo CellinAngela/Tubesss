@@ -31,15 +31,15 @@ void tambahBuku(){
         printf("================= Buku ke-%d =================\n\n", i + 1);
         printf(COLOR_RESET);
 
-        printf("Judul Buku      : \n");
+        printf("Judul Buku      : ");
         fgets(daftar[jumlahBuku].judul, 100, stdin);
         daftar[jumlahBuku].judul[strcspn(daftar[jumlahBuku].judul, "\n")] = 0;
 
-        printf("Nama Penulis    : \n");
+        printf("Nama Penulis    : ");
         fgets(daftar[jumlahBuku].penulis, 100, stdin);
         daftar[jumlahBuku].penulis[strcspn(daftar[jumlahBuku].penulis, "\n")] = 0;
 
-        printf("Tahun Terbit    : \n");
+        printf("Tahun Terbit    : ");
         scanf("%d", &daftar[jumlahBuku].tahun);
         getchar();
 

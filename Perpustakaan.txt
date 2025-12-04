@@ -54,11 +54,94 @@ Stok            : 0
 Dipinjam        : 0
 Tanggal Kembali : 
 
-Judul Buku     : Zerlina 
-Nama Penulis   : danish
-Tahun Terbit   : 2025
+Judul Buku      : Zerlina 
+Nama Penulis    : danish
+Tahun Terbit    : 2025
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
 
-Judul Buku     : qeizha
-Nama Penulis   : AAAAAAAA
-Tahun Terbit   : 2025
+Judul Buku      : qeizha
+Nama Penulis    : AAAAAAAA
+Tahun Terbit    : 2025
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : xixixi
+Nama Penulis    : balblabla
+Tahun Terbit    : 2000
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : testes
+Nama Penulis    : okokok
+Tahun Terbit    : 2000
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : hohoho
+Nama Penulis    : hihihi
+Tahun Terbit    : 2000
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : babibubebo
+Nama Penulis    : yayaya
+Tahun Terbit    : 2009
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : hoho
+Nama Penulis    : pp
+Tahun Terbit    : 9090
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : haihai
+Nama Penulis    : okok
+Tahun Terbit    : 2009
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : teslagi
+Nama Penulis    : iya
+Tahun Terbit    : 2019
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : teslagiya
+Nama Penulis    : iyaiya
+Tahun Terbit    : 9087
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : qeizhaaa
+Nama Penulis    : aleesha
+Tahun Terbit    : 2007
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : yaya
+Nama Penulis    : yeye
+Tahun Terbit    : 2321
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
+
+Judul Buku      : lalala
+Nama Penulis    : yeyeye
+Tahun Terbit    : 8890
+Stok            : 1
+Dipinjam        : 0
+Tanggal Kembali : 
 
