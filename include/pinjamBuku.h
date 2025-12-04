@@ -9,7 +9,7 @@
 #include "buku.h"
 #include "ansi.h"
 
-void pinjamBuku() {
+void pinjamBuku(){
     system("cls");
     char judul[100];
     char penulis[100];
@@ -17,7 +17,7 @@ void pinjamBuku() {
     printf(COLOR_BLUE);
     printf("\n================= PEMINJAMAN BUKU =================\n\n");
     printf(COLOR_RESET);
-    printf("Masukkan Judul Buku : ");
+    printf("Masukkan Judul Buku   : ");
     fgets(judul, sizeof(judul), stdin);
     judul[strcspn(judul, "\n")] = 0;
 
@@ -26,7 +26,7 @@ void pinjamBuku() {
     penulis[strcspn(penulis, "\n")] = 0;
 
     FILE *file = fopen("Perpustakaan.txt", "r");
-    if (!file) {
+    if (!file){
         printf("\nData buku masih kosong. Silakan tambah buku dulu.\n");
         printf(COLOR_CYAN);
         printf("Tekan ENTER untuk kembali");
@@ -37,7 +37,7 @@ void pinjamBuku() {
 
     char lines[2000][256];
     int n = 0;
-    while (fgets(lines[n], sizeof(lines[n]), file) != NULL && n < 1999) {
+    while (fgets(lines[n], sizeof(lines[n]), file) != NULL && n < 1999){
         n++;
     }
     fclose(file);
@@ -50,14 +50,14 @@ void pinjamBuku() {
     for (int k = 0; judulLower[k]; k++) judulLower[k] = tolower((unsigned char)judulLower[k]);
     for (int k = 0; penulisLower[k]; k++) penulisLower[k] = tolower((unsigned char)penulisLower[k]);
 
-    for (int i = 0; i < n; i++) {
-        if (strncmp(lines[i], "Judul Buku", 10) == 0) {
+    for (int i = 0; i < n; i++){
+        if (strncmp(lines[i], "Judul Buku", 10) == 0){
             char lineLower[256];
             strncpy(lineLower, lines[i], sizeof(lineLower)-1); lineLower[sizeof(lineLower)-1] = '\0';
             for (int k = 0; lineLower[k]; k++) lineLower[k] = tolower((unsigned char)lineLower[k]);
 
-            if (strstr(lineLower, judulLower) != NULL) {
-                if (i+1 < n && strncmp(lines[i+1], "Nama Penulis", 12) == 0) {
+            if (strstr(lineLower, judulLower) != NULL){
+                if (i+1 < n && strncmp(lines[i+1], "Nama Penulis", 12) == 0){
                     char penulisLineLower[256];
                     strncpy(penulisLineLower, lines[i+1], sizeof(penulisLineLower)-1); penulisLineLower[sizeof(penulisLineLower)-1] = '\0';
                     for (int k = 0; penulisLineLower[k]; k++) penulisLineLower[k] = tolower((unsigned char)penulisLineLower[k]);
@@ -70,8 +70,8 @@ void pinjamBuku() {
         }
     }
 
-    if (foundIndex == -1) {
-        printf("\nJudul atau penulis tidak ditemukan di data buku.\n");
+    if (foundIndex == -1){
+        printf("\nJudul atau penulis tidak ditemukan di data buku\n");
         printf(COLOR_CYAN);
         printf("Tekan ENTER untuk kembali");
         getchar();
@@ -81,16 +81,16 @@ void pinjamBuku() {
 
     int j = foundIndex;
     int isBorrowed = 0;
-    while (j < n && strlen(lines[j]) > 1) {
-        if (strstr(lines[j], "Status: Sedang dipinjam") != NULL) {
+    while (j < n && strlen(lines[j]) > 1){
+        if (strstr(lines[j], "Status          : Sedang dipinjam") != NULL){
             isBorrowed = 1;
             break;
         }
         j++;
     }
 
-    if (isBorrowed) {
-        printf("\nMaaf, buku ini saat ini UNAVAILABLE (sedang dipinjam).\n");
+    if (isBorrowed){
+        printf("\nMaaf, buku ini saat ini sedang dipinjam\n");
         printf(COLOR_CYAN); 
         printf("Tekan ENTER untuk kembali");
         getchar();
@@ -114,7 +114,7 @@ void pinjamBuku() {
     strftime(tanggalKembali, sizeof(tanggalKembali), "%d-%m-%Y", &tm_now);
 
     FILE *temp = fopen("temp.txt", "w");
-    if (!temp) {
+    if (!temp){
         printf("Gagal membuat file sementara.\n");
         printf(COLOR_CYAN);
         printf("Tekan ENTER untuk kembali");
@@ -123,19 +123,19 @@ void pinjamBuku() {
         return;
     }
 
-    for (int i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++){
         fputs(lines[i], temp);
-        if (i == foundIndex) {
+        if (i == foundIndex){
             int k = i + 1;
             int end = k;
             while (end < n && strlen(lines[end]) > 1) end++;
 
-            for (int j = i + 1; j < end; j++) {
+            for (int j = i + 1; j < end; j++){
                 fputs(lines[j], temp);
             }
 
-            fprintf(temp, "Status: Sedang dipinjam\n");
-            fprintf(temp, "Tanggal Pinjam : %s\n", tanggalPinjam);
+            fprintf(temp, "Status          : Sedang dipinjam\n");
+            fprintf(temp, "Tanggal Pinjam  : %s\n", tanggalPinjam);
             fprintf(temp, "Lama Peminjaman : %d hari\n", lama);
             fprintf(temp, "Tanggal Kembali : %s\n", tanggalKembali);
             if (end < n) fprintf(temp, "\n");
@@ -146,14 +146,13 @@ void pinjamBuku() {
 
     fclose(temp);
 
-    
     remove("Perpustakaan.txt");
     rename("temp.txt", "Perpustakaan.txt");
 
-    printf("\nBerhasil meminjam buku.\n");
-    printf("Tanggal Pinjam : %s\n", tanggalPinjam);
-    printf("Lama Peminjaman : %d hari\n", lama);
-    printf("Tanggal Kembali : %s\n", tanggalKembali);
+    printf("\nBerhasil meminjam buku\n");
+    printf("Tanggal Pinjam    : %s\n", tanggalPinjam);
+    printf("Lama Peminjaman   : %d hari\n", lama);
+    printf("Tanggal Kembali   : %s\n", tanggalKembali);
     printf(COLOR_CYAN);
     printf("\nTekan ENTER untuk kembali");
     getchar();

@@ -4,19 +4,19 @@
 #include <windows.h>
 #include <string.h>
 
-int hitungTotalBuku(struct Buku data[], int n) {
+int hitungTotalBuku(struct Buku data[], int n){
     return n;
 }
 
 int hitungJudulBukuDariFile() {
     FILE *file = fopen("Perpustakaan.txt", "r");
-    if (file == NULL) {
+    if (file == NULL){
         return 0;
     }
     
     int count = 0;
     char line[256];
-    while (fgets(line, sizeof(line), file) != NULL) {
+    while (fgets(line, sizeof(line), file) != NULL){
         if (strstr(line, "Judul Buku") != NULL || strstr(line, "Judul   :") != NULL) {
             count++;
         }
@@ -38,8 +38,8 @@ void hitungBuku(){
     int totalJudul = hitungJudulBukuDariFile();
     int totalBuku = hitungTotalBuku(daftar, jumlahBuku);
     
-    printf("\nJumlah Buku yang Ditambahkan: %d\n", totalBuku);
-    printf("Total Jumlah Buku di Perpustakaan: %d\n", totalJudul);
+    printf("\nJumlah Buku yang Ditambahkan    : %d\n", totalBuku);
+    printf("Total Jumlah Buku di Perpustakaan : %d\n", totalJudul);
     
     printf("\n==============================================\n");
     printf(COLOR_CYAN);
@@ -47,4 +47,3 @@ void hitungBuku(){
     getchar();
     printf(COLOR_RESET);
 }
-

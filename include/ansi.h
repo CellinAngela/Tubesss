@@ -18,7 +18,6 @@
 #define COLOR_WHITE "\x1b[37m"
 #define COLOR_BRIGHT "\x1b[1m"
 
-
 void enableAnsiColors();
 
 #endif
