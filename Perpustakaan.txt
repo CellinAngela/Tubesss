@@ -18,6 +18,11 @@ Tahun Terbit    : 2026
 Stok            : 0
 Dipinjam        : 0
 Tanggal Kembali : 
+Status          : Sedang dipinjam
+Tanggal Pinjam  : 05-12-2025
+Lama Peminjaman : 5 hari
+Tanggal Kembali : 10-12-2025
+
 
 Judul Buku      : Hobbit
 Nama Penulis    : Clarren
@@ -60,6 +65,11 @@ Tahun Terbit    : 2025
 Stok            : 1
 Dipinjam        : 0
 Tanggal Kembali : 
+Status          : Sedang dipinjam
+Tanggal Pinjam  : 05-12-2025
+Lama Peminjaman : 5 hari
+Tanggal Kembali : 10-12-2025
+
 
 Judul Buku      : qeizha
 Nama Penulis    : AAAAAAAA

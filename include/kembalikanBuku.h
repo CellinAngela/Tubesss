@@ -50,23 +50,17 @@ void kembalikanBuku(){
     fclose(file);
 
     int foundIndex = -1;
-
     for (int i = 0; i < n; i++){
-        if (strncmp(lines[i], "Judul Buku", 10) == 0){
-            if (strstr(lines[i], judul) != NULL){
-                if (i + 1 < n && strncmp(lines[i + 1], "Nama Penulis", 12) == 0){
-                    if (strstr(lines[i + 1], penulis) != NULL)
-                    {
-                        foundIndex = i;
-                        break;
-                    }
-                }
+        if (strstr(lines[i], "Judul Buku") != NULL && strstr(lines[i], judul) != NULL){
+            if (i + 1 < n && strstr(lines[i + 1], "Nama Penulis") != NULL && strstr(lines[i + 1], penulis) != NULL){
+                foundIndex = i;
+                break;
             }
         }
     }
 
     if (foundIndex == -1){
-        printf("\nJudul atau penulis tidak ditemukan di data buku.\n");
+        printf("\nJudul atau penulis tidak ditemukan.\n");
         printf(COLOR_CYAN);
         printf("Tekan ENTER untuk kembali");
         getchar();
@@ -74,20 +68,21 @@ void kembalikanBuku(){
         return;
     }
 
-    int i = foundIndex + 1;
-    while (i < n && strlen(lines[i]) > 1 && strncmp(lines[i], "Judul Buku", 10) != 0)
-        i++;
+    int endIndex = foundIndex + 1;
+    while (endIndex < n && strlen(lines[endIndex]) > 1){
+        endIndex++;
+    }
 
-    int statusLineIndex = -1;
-    for (int j = foundIndex; j < i; j++){
-        if (strstr(lines[j], "Status     : Sedang dipinjam") != NULL){
-            statusLineIndex = j;
+    int statusFound = 0;
+    for (int j = foundIndex; j < endIndex; j++){
+        if (strstr(lines[j], "Status") != NULL && strstr(lines[j], "dipinjam") != NULL){
+            statusFound = 1;
             break;
         }
     }
 
-    if (statusLineIndex == -1){
-        printf("\nBuku ini tidak sedang dipinjam (tidak ada status peminjaman)\n");
+    if (!statusFound){
+        printf("\nBuku ini tidak sedang dipinjam.\n");
         printf(COLOR_CYAN);
         printf("Tekan ENTER untuk kembali");
         getchar();
@@ -105,22 +100,14 @@ void kembalikanBuku(){
         return;
     }
 
-    for (int k = 0; k < n; k++){
-        if (k == statusLineIndex){
-            int skip = 0;
-            int kk = k;
-            while (kk < n && skip < 6){
-                if (strlen(lines[kk]) <= 1){
-                    kk++;
-                    break;
-                }
-                kk++;
-                skip++;
+    for (int i = 0; i < n; i++){
+        if (i >= foundIndex && i < endIndex){
+            if (strstr(lines[i], "Status") == NULL){
+                fputs(lines[i], temp);
             }
-            k = kk - 1;
-            continue;
+        }else{
+            fputs(lines[i], temp);
         }
-        fputs(lines[k], temp);
     }
 
     fclose(temp);
