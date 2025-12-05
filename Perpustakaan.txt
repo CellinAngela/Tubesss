@@ -167,7 +167,7 @@ Nama Penulis    : Efghi
 Tahun Terbit    : 2021
 Stok            : 50
 Dipinjam        : 0
-Tanggal Kembali : 
+
 
 Judul Buku      : Tuvwx
 Nama Penulis    : Yzabc

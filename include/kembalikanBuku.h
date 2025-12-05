@@ -102,12 +102,11 @@ void kembalikanBuku(){
 
     for (int i = 0; i < n; i++){
         if (i >= foundIndex && i < endIndex){
-            if (strstr(lines[i], "Status") == NULL){
-                fputs(lines[i], temp);
+            if (strstr(lines[i], "Status") != NULL || strstr(lines[i], "Tanggal Pinjam") != NULL || strstr(lines[i], "Lama Peminjaman") != NULL || strstr(lines[i], "Tanggal Kembali") != NULL){
+                continue; // skip loan-related lines
             }
-        }else{
-            fputs(lines[i], temp);
         }
+        fputs(lines[i], temp);
     }
 
     fclose(temp);

@@ -118,14 +118,15 @@ void pinjamBuku(){
     for (int i = 0; i < n; i++){
         if (i >= foundIndex && i < endIndex){
             fputs(lines[i], temp);
-        }else if (i == endIndex - 1){
-            fprintf(temp, "Status: dipinjam\n");
-            fprintf(temp, "Tanggal Pinjam: %s\n", tanggalPinjam);
-            fprintf(temp, "Tanggal Kembali: %s\n", tanggalKembali);
-            if (endIndex < n){
-                fprintf(temp, "\n");
+            if (i == endIndex - 1){
+                fprintf(temp, "Status          : Sedang dipinjam\n");
+                fprintf(temp, "Tanggal Pinjam  : %s\n", tanggalPinjam);
+                fprintf(temp, "Lama Peminjaman : %d hari\n", lama);
+                fprintf(temp, "Tanggal Kembali : %s\n", tanggalKembali);
+                if (endIndex < n)
+                    fprintf(temp, "\n");
             }
-        }else{
+        } else {
             fputs(lines[i], temp);
         }
     }
