@@ -16,10 +16,13 @@ void editBuku(){
     printf("|           EDIT DATA BUKU           |\n");
     printf("======================================\n");
     printf(COLOR_RESET);
-    printf("Format Penulisan:\n");
-    printf(" - Judul dan Penulis harus ditulis PERSIS sama\n");
-    printf("   Judul Buku: The Metamorphosis ------- benar\n");
-    printf("   Judul Buku: the metamorphosis ------- salah\n\n");
+    
+    printf(COLOR_RED);
+        printf("Format Penulisan:\n");
+        printf(" - Judul dan Penulis harus ditulis PERSIS sama\n");
+        printf("   Judul Buku: The Metamorphosis ------- benar\n");
+        printf("   Judul Buku: the metamorphosis ------- salah\n\n");
+        printf(COLOR_RESET);
 
     if (jumlahBuku == 0){
         printf("Tidak ada buku yang bisa diedit.\n");

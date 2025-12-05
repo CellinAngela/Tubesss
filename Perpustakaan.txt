@@ -164,3 +164,13 @@ Nama Penulis    : Yzabc
 Tahun Terbit    : 2025
 Stok            : 50
 
+Judul Buku      : Animal Farm
+Nama Penulis    : George Orwell
+Tahun Terbit    : 1945
+Stok            : 50
+Status          : Sedang dipinjam
+Tanggal Pinjam  : 05-12-2025
+Lama Peminjaman : 5 hari
+Tanggal Kembali : 10-12-2025
+
+
